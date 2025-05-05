@@ -8,65 +8,13 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        data: { breadcrumb: 'E-Commerce Dashboard' },
+        data: { breadcrumb: '' },
         loadComponent: () =>
-          import('./pages/dashboard/ecommercedashboard').then(
-            (c) => c.EcommerceDashboard
+          import('./pages/dashboard/dashboard.component').then(
+            (c) => c.DashboardComponent
           ),
       },
-      {
-        path: 'dashboard-banking',
-        data: { breadcrumb: 'Banking Dashboard' },
-        loadComponent: () =>
-          import('./pages/dashboard/bankingdashboard').then(
-            (c) => c.BankingDashboard
-          ),
-      },
-      // {
-      //   path: 'uikit',
-      //   data: { breadcrumb: 'UI Kit' },
-      //   loadChildren: () => import('./pages/uikit/uikit.routes'),
-      // },
-      // {
-      //   path: 'documentation',
-      //   data: { breadcrumb: 'Documentation' },
-      //   loadComponent: () =>
-      //     import('./pages/documentation/documentation').then(
-      //       (c) => c.Documentation
-      //     ),
-      // },
-      // {
-      //   path: 'pages',
-      //   data: { breadcrumb: 'Pages' },
-      //   loadChildren: () => import('./pages/pages.routes'),
-      // },
-      // {
-      //   path: 'apps',
-      //   data: { breadcrumb: 'Apps' },
-      //   loadChildren: () => import('./apps/apps.routes'),
-      // },
-      // {
-      //   path: 'ecommerce',
-      //   loadChildren: () => import('./pages/ecommerce/ecommerce.routes'),
-      // },
-      // {
-      //   path: 'profile',
-      //   data: { breadcrumb: 'User Management' },
-      //   loadChildren: () =>
-      //     import('@/pages/usermanagement/usermanagement.routes'),
-      // },
-      // {
-      //   path: 'blocks',
-      //   data: { breadcrumb: 'Prime Blocks' },
-      //   loadChildren: () => import('@/pages/blocks/blocks.routes'),
-      // },
     ],
-  },
-  { path: 'auth', loadChildren: () => import('./pages/auth/auth.routes') },
-  {
-    path: 'landing',
-    loadComponent: () =>
-      import('./pages/landing/landing').then((c) => c.Landing),
   },
   {
     path: 'notfound',

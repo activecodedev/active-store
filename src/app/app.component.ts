@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
+import { Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { LayoutService } from './layout/service/layout.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,15 @@ import { ButtonModule } from 'primeng/button';
   template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {
-  title = 'active-store';
+  private layoutService = inject(LayoutService);
+  layoutConfig = this.layoutService.layoutConfig();
+
+  constructor() {
+    if (this.layoutConfig) {
+      this.layoutConfig.darkTheme = true;
+      this.layoutConfig.menuMode = 'horizontal';
+      this.layoutConfig.primary = 'sky';
+      this.layoutConfig.menuTheme = 'dark';
+    }
+  }
 }
