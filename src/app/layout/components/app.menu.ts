@@ -53,5 +53,29 @@ export class AppMenu {
       icon: 'pi pi-home',
       routerLink: ['/'],
     },
+    {
+      label: 'Produkty',
+      icon: 'pi pi-box',
+    },
+    {
+      label: 'O nas',
+      icon: 'pi pi-info-circle',
+    },
+    {
+      label: 'Kontakt',
+      icon: 'pi pi-envelope',
+    },
+    {
+      label: 'FAQ',
+      icon: 'pi pi-question-circle',
+    },
+    {
+      label: 'Regulamin',
+      icon: 'pi pi-file',
+    },
+    {
+      label: 'Polityka prywatności',
+      icon: 'pi pi-lock',
+    },
   ];
 }

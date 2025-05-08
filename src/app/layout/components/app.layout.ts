@@ -16,6 +16,7 @@ import { AppBreadcrumb } from './app.breadcrumb';
 import { AppMenu } from './app.menu';
 import { AppRightMenu } from './app.rightmenu';
 import { AppSidebar } from './app.sidebar';
+import { FooterWidget } from '../../pages/landing/components/footerwidget';
 
 @Component({
   selector: 'app-layout',
@@ -27,6 +28,7 @@ import { AppSidebar } from './app.sidebar';
     AppConfigurator,
     AppBreadcrumb,
     AppRightMenu,
+    FooterWidget,
   ],
   template: `
     <div class="layout-container" [ngClass]="containerClass">
@@ -39,6 +41,7 @@ import { AppSidebar } from './app.sidebar';
       </div>
       <div app-right-menu></div>
       <div class="layout-mask"></div>
+      <footer-widget />
     </div>
     <app-configurator />
   `,
@@ -67,48 +70,48 @@ export class AppLayout implements OnDestroy {
 
     this.overlayMenuOpenSubscription =
       this.layoutService.overlayOpen$.subscribe(() => {
-        if (this.isBrowser) {
-          if (!this.menuOutsideClickListener) {
-            this.menuOutsideClickListener = this.renderer.listen(
-              'document',
-              'click',
-              (event) => {
-                const isOutsideClicked = !(
-                  this.appTopbar.el.nativeElement.isSameNode(event.target) ||
-                  this.appTopbar.el.nativeElement.contains(event.target) ||
-                  this.appTopbar.menuButton.nativeElement.isSameNode(
-                    event.target
-                  ) ||
-                  this.appTopbar.menuButton.nativeElement.contains(event.target)
-                );
-                if (isOutsideClicked) {
-                  this.hideMenu();
-                }
+        // if (this.isBrowser) {
+        if (!this.menuOutsideClickListener) {
+          this.menuOutsideClickListener = this.renderer.listen(
+            'document',
+            'click',
+            (event) => {
+              const isOutsideClicked = !(
+                this.appTopbar.el.nativeElement.isSameNode(event.target) ||
+                this.appTopbar.el.nativeElement.contains(event.target) ||
+                this.appTopbar.menuButton.nativeElement.isSameNode(
+                  event.target
+                ) ||
+                this.appTopbar.menuButton.nativeElement.contains(event.target)
+              );
+              if (isOutsideClicked) {
+                this.hideMenu();
               }
-            );
-          }
-
-          if (
-            (this.layoutService.isHorizontal() ||
-              this.layoutService.isSlim() ||
-              this.layoutService.isSlimPlus()) &&
-            !this.menuScrollListener
-          ) {
-            this.menuScrollListener = this.renderer.listen(
-              this.appTopbar.appSidebar.appMenu.menuContainer.nativeElement,
-              'scroll',
-              (event) => {
-                if (this.layoutService.isDesktop()) {
-                  this.hideMenu();
-                }
-              }
-            );
-          }
-
-          if (this.layoutService.layoutState().staticMenuMobileActive) {
-            this.blockBodyScroll();
-          }
+            }
+          );
         }
+
+        if (
+          (this.layoutService.isHorizontal() ||
+            this.layoutService.isSlim() ||
+            this.layoutService.isSlimPlus()) &&
+          !this.menuScrollListener
+        ) {
+          this.menuScrollListener = this.renderer.listen(
+            this.appTopbar.appSidebar.appMenu.menuContainer.nativeElement,
+            'scroll',
+            (event) => {
+              if (this.layoutService.isDesktop()) {
+                this.hideMenu();
+              }
+            }
+          );
+        }
+
+        if (this.layoutService.layoutState().staticMenuMobileActive) {
+          this.blockBodyScroll();
+        }
+        // }
       });
 
     this.router.events
@@ -119,28 +122,29 @@ export class AppLayout implements OnDestroy {
   }
 
   blockBodyScroll(): void {
-    if (this.isBrowser) {
-      if (document.body.classList) {
-        document.body.classList.add('blocked-scroll');
-      } else {
-        document.body.className += ' blocked-scroll';
-      }
+    // if (this.isBrowser) {
+    if (document.body.classList) {
+      document.body.classList.add('blocked-scroll');
+    } else {
+      document.body.className += ' blocked-scroll';
     }
+    // }
   }
 
   unblockBodyScroll(): void {
-    if (this.isBrowser) {
-      if (document.body.classList) {
-        document.body.classList.remove('blocked-scroll');
-      } else {
-        document.body.className = document.body.className.replace(
-          new RegExp(
-            '(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)',
-            'gi'
-          ),
-          ' '
-        );
-      }
+    if (!this.isBrowser) {
+      return;
+    }
+    if (document.body.classList) {
+      document.body.classList.remove('blocked-scroll');
+    } else {
+      document.body.className = document.body.className.replace(
+        new RegExp(
+          '(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)',
+          'gi'
+        ),
+        ' '
+      );
     }
   }
 

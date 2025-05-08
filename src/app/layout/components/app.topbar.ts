@@ -126,8 +126,8 @@ export class AppTopbar {
   }
 
   onTopbarItemClick() {
-    if (this.isBrowser) {
-      document.body.click();
-    }
+    // if (this.isBrowser) {
+    document.body.click();
+    // }
   }
 }
