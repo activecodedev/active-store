@@ -17,62 +17,31 @@ import { InputTextModule } from 'primeng/inputtext';
             <div
               class="text-surface-900 dark:text-surface-0 font-bold leading-normal mb-4"
             >
-              Company
+              Firma
             </div>
             <a
               class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-surface-500 duration-200"
-              >About Us</a
+              >O Nas</a
             >
             <a
               class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
-              >News</a
+              >Aktualności</a
             >
             <a
               class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
-              >Investor Relations</a
-            >
-            <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
-              >Careers</a
+              >Kariera</a
             >
             <a
               class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal hover:text-primary duration-200"
-              >Media Kit</a
+              >Dla mediów</a
             >
           </div>
           <div class="col-span-12 md:col-span-3">
             <div
               class="text-surface-900 dark:text-surface-0 font-bold leading-normal mb-4"
             >
-              Resourses
+              Zasoby wiedzy
             </div>
-            <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
-              >Get Started</a
-            >
-            <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
-              >Learn</a
-            >
-            <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal hover:text-primary duration-200"
-              >Case Studies</a
-            >
-          </div>
-          <div class="col-span-12 md:col-span-3">
-            <div
-              class="text-surface-900 dark:text-surface-0 font-bold leading-normal mb-4"
-            >
-              Community
-            </div>
-            <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
-              >Discord</a
-            >
-            <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
-              >Events</a
-            >
             <a
               class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
               >FAQ</a
@@ -86,11 +55,11 @@ import { InputTextModule } from 'primeng/inputtext';
             <div
               class="text-surface-700 dark:text-surface-100 leading-normal mb-4"
             >
-              Join our community to get weekly updates and unique gifts every
-              friday.
+              Zapisz się do naszego newslettera, by otrzymywać informacje o
+              nowościach i aktualizacjach.
             </div>
-            <input pInputText placeholder="Enter your email" class="w-full" />
-            <p-button label="Join" styleClass="px-8 mt-4 py-4"></p-button>
+            <input pInputText placeholder="E-mail" class="w-full" />
+            <p-button label="Zapisz się" styleClass="px-8 mt-4 py-4"></p-button>
           </div>
         </div>
         <div class="flex flex-wrap items-center justify-between mt-12">
@@ -199,15 +168,15 @@ import { InputTextModule } from 'primeng/inputtext';
           <div class="flex items-center justify-between md:mb-0 mb-4">
             <a
               class="text-surface-700 dark:text-surface-100 cursor-pointer md:ml-8 ml-2 hover:text-primary duration-200"
-              >Brand Policy</a
+              >Dostawa i zwroty</a
             >
             <a
               class="text-surface-700 dark:text-surface-100 cursor-pointer md:ml-8 ml-2 hover:text-primary duration-200"
-              >Privacy Policy</a
+              >Polityka Prywatności</a
             >
             <a
               class="text-surface-700 dark:text-surface-100 cursor-pointer md:ml-8 ml-2 hover:text-primary duration-200"
-              >Terms of Service</a
+              >Regulamin</a
             >
           </div>
           <div class="flex items-center justify-between">
