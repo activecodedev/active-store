@@ -8,53 +8,43 @@ import { InputTextModule } from 'primeng/inputtext';
   standalone: true,
   imports: [ButtonModule, AnimateEnterDirective, InputTextModule],
   template: `
-    <div class="landing-section px-6 md:px-20 pt-20 mt-20">
+    <div class="px-6 md:px-20 pt-20 mt-20">
       <div class="pt-20 pb-12">
         <div
           class="grid grid-cols-12 gap-4 pb-12 border-b border-surface-300 dark:border-surface-500"
         >
           <div class="col-span-12 md:col-span-3">
-            <div
-              class="text-surface-900 dark:text-surface-0 font-bold leading-normal mb-4"
-            >
-              Firma
-            </div>
+            <div class="font-bold leading-normal mb-4">Firma</div>
             <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-surface-500 duration-200"
+              class="block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
               >O Nas</a
             >
             <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
+              class="block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
               >Aktualności</a
             >
             <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
+              class="block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
               >Kariera</a
             >
             <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal hover:text-primary duration-200"
+              class="block cursor-pointer leading-normal hover:text-primary duration-200"
               >Dla mediów</a
             >
           </div>
           <div class="col-span-12 md:col-span-3">
-            <div
-              class="text-surface-900 dark:text-surface-0 font-bold leading-normal mb-4"
-            >
-              Zasoby wiedzy
-            </div>
+            <div class="font-bold leading-normal mb-4">Zasoby wiedzy</div>
             <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
+              class="block cursor-pointer leading-normal mb-2 hover:text-primary duration-200"
               >FAQ</a
             >
             <a
-              class="text-surface-700 dark:text-surface-100 block cursor-pointer leading-normal hover:text-primary duration-200"
+              class="block cursor-pointer leading-normal hover:text-primary duration-200"
               >Blog</a
             >
           </div>
           <div class="col-span-12 md:col-span-3">
-            <div
-              class="text-surface-700 dark:text-surface-100 leading-normal mb-4"
-            >
+            <div class="leading-normal mb-4">
               Zapisz się do naszego newslettera, by otrzymywać informacje o
               nowościach i aktualizacjach.
             </div>
@@ -167,15 +157,15 @@ import { InputTextModule } from 'primeng/inputtext';
           </div>
           <div class="flex items-center justify-between md:mb-0 mb-4">
             <a
-              class="text-surface-700 dark:text-surface-100 cursor-pointer md:ml-8 ml-2 hover:text-primary duration-200"
+              class="cursor-pointer md:ml-8 ml-2 hover:text-primary duration-200"
               >Dostawa i zwroty</a
             >
             <a
-              class="text-surface-700 dark:text-surface-100 cursor-pointer md:ml-8 ml-2 hover:text-primary duration-200"
+              class="cursor-pointer md:ml-8 ml-2 hover:text-primary duration-200"
               >Polityka Prywatności</a
             >
             <a
-              class="text-surface-700 dark:text-surface-100 cursor-pointer md:ml-8 ml-2 hover:text-primary duration-200"
+              class="cursor-pointer md:ml-8 ml-2 hover:text-primary duration-200"
               >Regulamin</a
             >
           </div>
@@ -194,6 +184,11 @@ import { InputTextModule } from 'primeng/inputtext';
               class="cursor-pointer text-surface-500 dark:text-surface-300 md:ml-4 ml-2 hover:text-primary duration-200"
             >
               <i class="pi pi-github text-xl"></i>
+            </a>
+            <a
+              class="cursor-pointer text-surface-500 dark:text-surface-300 md:ml-4 ml-2 hover:text-primary duration-200"
+            >
+              <i class="pi pi-youtube text-xl"></i>
             </a>
           </div>
         </div>

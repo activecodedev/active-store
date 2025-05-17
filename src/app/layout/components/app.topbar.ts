@@ -16,7 +16,7 @@ import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { FormsModule } from '@angular/forms';
 import { AppSidebar } from './app.sidebar';
-import { Popover, PopoverModule } from 'primeng/popover';
+import { PopoverModule } from 'primeng/popover';
 
 @Component({
   selector: '[app-topbar]',
@@ -90,6 +90,15 @@ import { Popover, PopoverModule } from 'primeng/popover';
               </ul>
             </div>
           </p-popover>
+        </li>
+        <li>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-cog"
+            class="flex-shrink-0 !rounded-xl !w-8 !h-8"
+            (click)="onConfigButtonClick()"
+          ></button>
         </li>
       </ul>
     </div>
