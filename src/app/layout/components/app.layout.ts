@@ -17,6 +17,7 @@ import { AppMenu } from './app.menu';
 import { AppRightMenu } from './app.rightmenu';
 import { AppSidebar } from './app.sidebar';
 import { FooterWidget } from '../../pages/landing/components/footerwidget';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-layout',
@@ -29,6 +30,7 @@ import { FooterWidget } from '../../pages/landing/components/footerwidget';
     AppBreadcrumb,
     AppRightMenu,
     FooterWidget,
+    ToastModule,
   ],
   template: `
     <div class="layout-container" [ngClass]="containerClass">
@@ -36,6 +38,7 @@ import { FooterWidget } from '../../pages/landing/components/footerwidget';
       <div class="layout-content-wrapper">
         <div class="layout-content">
           <nav app-breadcrumb></nav>
+          <p-toast position="top-center" key="default"></p-toast>
           <router-outlet></router-outlet>
         </div>
       </div>
@@ -70,7 +73,6 @@ export class AppLayout implements OnDestroy {
 
     this.overlayMenuOpenSubscription =
       this.layoutService.overlayOpen$.subscribe(() => {
-        // if (this.isBrowser) {
         if (!this.menuOutsideClickListener) {
           this.menuOutsideClickListener = this.renderer.listen(
             'document',

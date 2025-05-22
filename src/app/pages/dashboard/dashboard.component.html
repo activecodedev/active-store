@@ -3,13 +3,8 @@
         <div class="card">
             <div class="font-semibold text-xl mb-4">Empty Page</div>
             <p>Use this page to start from scratch and place your custom content.</p>
-            <!-- <ul>
-                @for (item of (querySnapshot$ | async); track item) {
-                <li>
-                    {{ item.name }}
-                </li>
-                }
-            </ul> -->
+            <p>{{ (this.authService.authStatus$|async)?.isAuthenticated}}</p>
+            <p>{{ (this.authService.currentUser$|async)?.fullName}}</p>
         </div>
     </div>
 </div>

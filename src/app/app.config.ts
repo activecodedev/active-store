@@ -13,26 +13,23 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyCb5Ufc-LmXFvn5qUs3sd4RGP-qQxZHwZU',
-  authDomain: 'active-store-main.firebaseapp.com',
-  databaseURL:
-    'https://active-store-main-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'active-store-main',
-  storageBucket: 'active-store-main.firebasestorage.app',
-  messagingSenderId: '714876997259',
-  appId: '1:714876997259:web:1fae03d16e0849710b4e8e',
-  measurementId: 'G-CCFRV8XNR7',
-};
+import { environment } from 'src/environments/environment';
+import { provideUiService } from './common/ui.service';
+import { AuthHttpInterceptor } from './auth/auth.http.interceptor';
+import { AuthService } from './auth/auth.service';
+import { authFactory } from './auth/auth.factory';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    // provideFirestore(() => getFirestore()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
@@ -56,20 +53,15 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
-    provideHttpClient(withFetch()),
-    provideFirebaseApp(() =>
-      initializeApp({
-        projectId: 'active-store-main',
-        appId: '1:714876997259:web:1fae03d16e0849710b4e8e',
-        databaseURL:
-          'https://active-store-main-default-rtdb.europe-west1.firebasedatabase.app',
-        storageBucket: 'active-store-main.firebasestorage.app',
-        apiKey: 'AIzaSyCb5Ufc-LmXFvn5qUs3sd4RGP-qQxZHwZU',
-        authDomain: 'active-store-main.firebaseapp.com',
-        messagingSenderId: '714876997259',
-        measurementId: 'G-CCFRV8XNR7',
-      })
-    ),
+    provideHttpClient(withFetch(), withInterceptors([AuthHttpInterceptor])),
+    {
+      provide: AuthService,
+      useFactory: authFactory,
+    },
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    provideUiService(),
+    MessageService,
   ],
 };

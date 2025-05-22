@@ -1,3 +1,4 @@
+import { AuthService } from '@/auth/auth.service';
 import { DataService } from '@/services/data.service';
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
@@ -20,12 +21,19 @@ interface Item {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ButtonModule, PopoverModule, IconFieldModule, InputIconModule],
+  imports: [
+    ButtonModule,
+    PopoverModule,
+    IconFieldModule,
+    InputIconModule,
+    AsyncPipe,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
   dataService = inject(DataService);
+  authService = inject(AuthService);
 
   ngOnInit() {
     // this.dataService.createRobot('robot');

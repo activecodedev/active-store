@@ -6,8 +6,8 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
+import { AsyncPipe, CommonModule, isPlatformBrowser } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { LayoutService } from '@/layout/service/layout.service';
 import { InputText } from 'primeng/inputtext';
@@ -17,6 +17,7 @@ import { InputIcon } from 'primeng/inputicon';
 import { FormsModule } from '@angular/forms';
 import { AppSidebar } from './app.sidebar';
 import { PopoverModule } from 'primeng/popover';
+import { AuthService } from '@/auth/auth.service';
 
 @Component({
   selector: '[app-topbar]',
@@ -32,6 +33,7 @@ import { PopoverModule } from 'primeng/popover';
     IconField,
     InputIcon,
     PopoverModule,
+    AsyncPipe,
   ],
   template: `
     <div class="topbar-start">
@@ -72,6 +74,20 @@ import { PopoverModule } from 'primeng/popover';
           <p-popover #op>
             <div class="flex flex-col gap-4">
               <ul class="list-none p-0 m-0 flex flex-col">
+                @if (!(this.authService.authStatus$ | async)?.isAuthenticated){
+                <li
+                  [routerLink]="['/auth/login']"
+                  class="flex items-center gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border"
+                >
+                  Logowanie
+                </li>
+                <li
+                  [routerLink]="['/auth/register']"
+                  class="flex items-center gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border"
+                >
+                  Rejestracja
+                </li>
+                } @else {
                 <li
                   class="flex items-center gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border"
                 >
@@ -83,10 +99,12 @@ import { PopoverModule } from 'primeng/popover';
                   Zamówienia
                 </li>
                 <li
+                  (click)="onLogoutButtonClick()"
                   class="flex items-center gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border"
                 >
                   Wyloguj
                 </li>
+                }
               </ul>
             </div>
           </p-popover>
@@ -109,18 +127,16 @@ import { PopoverModule } from 'primeng/popover';
 })
 export class AppTopbar {
   isBrowser: boolean = false;
+  layoutService = inject(LayoutService);
+  el = inject(ElementRef);
+  authService = inject(AuthService);
+  router = inject(Router);
+  @ViewChild('menubutton') menuButton!: ElementRef;
+  @ViewChild(AppSidebar) appSidebar!: AppSidebar;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
-
-  layoutService = inject(LayoutService);
-
-  el = inject(ElementRef);
-
-  @ViewChild('menubutton') menuButton!: ElementRef;
-
-  @ViewChild(AppSidebar) appSidebar!: AppSidebar;
 
   onMenuButtonClick() {
     this.layoutService.onMenuToggle();
@@ -135,8 +151,11 @@ export class AppTopbar {
   }
 
   onTopbarItemClick() {
-    // if (this.isBrowser) {
     document.body.click();
-    // }
+  }
+
+  onLogoutButtonClick() {
+    this.authService.logout(true);
+    this.router.navigateByUrl('/');
   }
 }
